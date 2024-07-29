@@ -2,10 +2,13 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnInit,
+  Input,
+  Output,
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { NotesLogService } from '../shared/notes-log.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-note-card',
@@ -13,6 +16,10 @@ import {
   styleUrls: ['./note-card.component.scss'],
 })
 export class NoteCardComponent implements AfterViewInit {
+  @Input() title!: string;
+  @Input() body!: string;
+  @Input() link!: string;
+  @Output('delete') deleteEvent = new Subject<void>;
   @ViewChild('truncator') truncator!: ElementRef<HTMLElement>;
   @ViewChild('bodyText') bodyText!: ElementRef<HTMLElement>;
 
@@ -22,7 +29,7 @@ export class NoteCardComponent implements AfterViewInit {
     let bodyTextStyle = window.getComputedStyle(
       this.bodyText.nativeElement,
       null
-    ); 
+    );
     let viewableBodyHeight = parseInt(
       bodyTextStyle.getPropertyValue('height'),
       10
@@ -33,5 +40,9 @@ export class NoteCardComponent implements AfterViewInit {
     } else {
       this.renderer.setStyle(this.truncator.nativeElement, 'display', 'none');
     }
+  }
+
+  onDelete(){
+    this.deleteEvent.next();
   }
 }

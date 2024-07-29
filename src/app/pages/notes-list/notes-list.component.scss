@@ -1,4 +1,6 @@
-.mian-container{
+@import '../../../main-styles.scss';
+
+.mian-container {
     display: flex;
     flex-direction: column;
 
@@ -7,13 +9,25 @@
     margin: auto;
 
     padding-top: 50px;
-}
 
-.notes-log{
-    margin-top: 35px;
-}
+    .notes-log {
+        margin-top: 35px;
+        margin-bottom: 70px;
+    }
 
-app-note-card{
-    display: block;
-    margin-bottom: 25px;
+    .floating-add-button {
+        position: fixed;
+        bottom: 0;
+        width: 500px;
+        border-radius: 0;
+        height: 68px;
+        font-size: 24px;
+
+        box-shadow: 0px 0px 15px 5px rgba($color: $purple, $alpha: 0.2);
+    }
+
+    app-note-card {
+        display: block;
+        margin-bottom: 25px;
+    }
 }

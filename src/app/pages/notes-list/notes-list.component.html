@@ -11,8 +11,14 @@
     </div>
 
     <div class="notes-log">
-        <app-note-card></app-note-card>
-        <app-note-card></app-note-card>
-        <app-note-card></app-note-card>
+        <app-note-card 
+        *ngFor="let note of notes; index as i" 
+        [link]="i.toString()"
+        [title]="note.title" 
+        [body]="note.body"
+        (delete)="onDeleteNote(i)">
+      </app-note-card>
     </div>
+
+    <button class="button floating-add-button is-success" routerLink="new">+ Add</button>
 </div>
