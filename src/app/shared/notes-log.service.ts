@@ -5,7 +5,20 @@ import { Note } from './note.model';
   providedIn: 'root',
 })
 export class NotesLogService {
-  notesLog: Note[] = new Array<Note>();
+  notesLog: Note[] = [
+    {
+      title: "Shopping List",
+      body: "Buy milk, eggs, bread, and cheese."
+    },
+    {
+      title: "Meeting Notes",
+      body: "Reviewed project milestones and set deadlines. Assigned tasks to the team, with a focus on completing wireframes by week's end. Need to follow up with the design team and monitor progress regularly."
+    },
+    {
+      title: "Travel Plans",
+      body: "Book flights and hotel for the trip to Paris. Visit Eiffel Tower and Louvre Museum."
+    }
+  ];
 
   constructor() {}
 
@@ -18,7 +31,7 @@ export class NotesLogService {
   }
 
   addNote(note: Note): number {
-    let newLength = this.notesLog.push(note);
+    let newLength = this.notesLog.unshift(note);
     let index = newLength - 1;
     return index;
   }
